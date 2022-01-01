@@ -1,14 +1,24 @@
-import React, { useContext } from 'react'
-import pokemonContext from '../../context/pokemonContext'
+import React, { useContext, useEffect } from "react";
+import pokemonContext from "../../context/pokemonContext";
 
 const PokemonImage = () => {
-    const {pokemon} = useContext(pokemonContext)
+  const { pokemon, getPokemon } = useContext(pokemonContext);
 
-    return (
-        <div>
-            {pokemon}
-        </div>
-    )
-}
+  useEffect(() => {
+    getPokemon();
+  }, []);
 
-export default PokemonImage
+  return (
+    <div>
+      <img
+        src={
+          pokemon
+            ? pokemon.sprites.other.home.front_default
+            : null
+        }
+      />
+    </div>
+  );
+};
+
+export default PokemonImage;
