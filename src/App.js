@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from 'react'
+import PokemonImage from './components/PokemonImage'
+import PokemonOptions from './components/PokemonOptions'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Fragment>
+      <h1>Who is this pokemon?</h1>
+      <PokemonImage />
+      <PokemonOptions />
+    </Fragment>
+  )
 }
 
-export default App;
+export default App
+
