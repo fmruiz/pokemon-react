@@ -3,11 +3,13 @@ import pokemonContext from "../../context/pokemonContext";
 import { ContainerImg } from "./styles";
 
 const PokemonImage = () => {
-  const { pokemon, getPokemon } = useContext(pokemonContext);
+  const { pokemon, newPokemon, getPokemon } = useContext(pokemonContext);
+
+  let poke = newPokemon === "" ? "pikachu" : newPokemon;
 
   useEffect(() => {
-    getPokemon();
-  }, []);
+    getPokemon(poke);
+  }, [poke]);
 
   return (
     <ContainerImg>

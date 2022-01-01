@@ -6,14 +6,22 @@ import * as types from "../types";
 const PokemonState = ({ children }) => {
   const initialState = {
     pokemon: null,
+    newPokemon: "",
   };
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState);
 
-  const getPokemon = async () => {
-    const data= await fetch(
-      `https://pokeapi.co/api/v2/pokemon/1`
-    ).then((res) => res.json());
+  const newPokemonFn = (pokemon) => {
+    dispatch({
+      type: types.NEW_POKEMON,
+      payload: pokemon,
+    });
+  };
+
+  const getPokemon = async (pokemon) => {
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).then(
+      (res) => res.json()
+    );
 
     dispatch({
       type: types.GET_POKEMON,
@@ -23,7 +31,12 @@ const PokemonState = ({ children }) => {
 
   return (
     <pokemonContext.Provider
-      value={{ pokemon: state.pokemon, getPokemon }}
+      value={{
+        pokemon: state.pokemon,
+        newPokemon: state.newPokemon,
+        getPokemon,
+        newPokemonFn,
+      }}
     >
       {children}
     </pokemonContext.Provider>
