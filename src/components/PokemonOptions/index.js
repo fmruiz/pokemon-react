@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import pokemonContext from "../../context/pokemonContext";
+import { ContainerName } from "./styles";
 
 const PokemonOptions = () => {
-    return (
-        <div>
-            Pokemon Options
-        </div>
-    )
-}
+  const { pokemon, getPokemon } = useContext(pokemonContext);
 
-export default PokemonOptions
+  useEffect(() => {
+    getPokemon();
+  }, []);
+
+  return (
+    <ContainerName>
+      <h2>{pokemon ? pokemon.name : null}</h2>
+    </ContainerName>
+  );
+};
+
+export default PokemonOptions;
