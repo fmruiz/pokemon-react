@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import pokemonContext from '../../context/pokemonContext'
 
 const PokemonImage = () => {
+    const {pokemon} = useContext(pokemonContext)
+
     return (
         <div>
-            pokemonImage
+            {pokemon}
         </div>
     )
 }
